@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paleta — Generador de Paletas Interactivo | Colorfly Studio</title>
+  <meta name="description" content="Generá paletas de colores aleatorias en HEX y HSL para tus propuestas de branding. Proyecto Integrador M1 - Full Stack." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">Colorfly<span class="brand__name-accent">Studio</span></span>
+    </div>
+    <p class="site-header__tag">Generador de Paletas Interactivo</p>
+  </header>
+
+  <main id="main">
+
+    <section class="controls" aria-labelledby="controls-heading">
+      <h1 id="controls-heading" class="controls__title">
+        Una paleta nueva,<br>a un click de distancia.
+      </h1>
+      <p class="controls__subtitle">
+        Elegí el tamaño, generá colores aleatorios y armá la base visual de tu próxima propuesta.
+      </p>
+
+      <div class="controls__row">
+        <fieldset class="size-picker">
+          <legend class="size-picker__legend">Tamaño de la paleta</legend>
+          <div class="size-picker__options">
+            <label class="size-picker__option">
+              <input type="radio" name="palette-size" value="6" checked />
+              <span>6 colores</span>
+            </label>
+            <label class="size-picker__option">
+              <input type="radio" name="palette-size" value="8" />
+              <span>8 colores</span>
+            </label>
+            <label class="size-picker__option">
+              <input type="radio" name="palette-size" value="9" />
+              <span>9 colores</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="format-picker">
+          <legend class="format-picker__legend">Formato</legend>
+          <div class="format-picker__options">
+            <label class="format-picker__option">
+              <input type="radio" name="color-format" value="hex" checked />
+              <span>HEX</span>
+            </label>
+            <label class="format-picker__option">
+              <input type="radio" name="color-format" value="hsl" />
+              <span>HSL</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="button" id="generate-btn" class="generate-btn">
+          <span class="generate-btn__icon" aria-hidden="true">⟳</span>
+          Generar paleta
+        </button>
+      </div>
+
+      <div class="controls__row controls__row--secondary">
+        <button type="button" id="save-btn" class="ghost-btn" aria-describedby="save-hint">
+          Guardar paleta
+        </button>
+        <button type="button" id="clear-saved-btn" class="ghost-btn ghost-btn--danger">
+          Borrar guardadas
+        </button>
+        <span id="save-hint" class="visually-hidden">Guarda la paleta actual en este navegador</span>
+      </div>
+    </section>
+
+    <section class="palette" aria-label="Paleta de colores generada">
+      <ul id="palette-list" class="palette__list" data-size="6">
+        <!-- Swatches inyectados por JS -->
+      </ul>
+    </section>
+
+    <section class="gradient" aria-labelledby="gradient-heading">
+      <div class="gradient__header">
+        <div>
+          <h2 id="gradient-heading" class="section-title">Gradiente sugerido</h2>
+          <p class="section-subtitle">Combinación de toda la paleta en un solo degradé, lista para usar como fondo.</p>
+        </div>
+        <fieldset class="gradient-type">
+          <legend class="visually-hidden">Tipo de gradiente</legend>
+          <div class="gradient-type__options">
+            <label class="gradient-type__option">
+              <input type="radio" name="gradient-type" value="135deg" checked />
+              <span>Diagonal</span>
+            </label>
+            <label class="gradient-type__option">
+              <input type="radio" name="gradient-type" value="90deg" />
+              <span>Horizontal</span>
+            </label>
+            <label class="gradient-type__option">
+              <input type="radio" name="gradient-type" value="radial" />
+              <span>Radial</span>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+      <div id="gradient-preview" class="gradient-preview" role="img" aria-label="Vista previa del gradiente generado a partir de la paleta"></div>
+      <button type="button" id="copy-gradient-btn" class="ghost-btn">Copiar CSS del gradiente</button>
+    </section>
+
+    <section class="suggestions" aria-labelledby="suggestions-heading">
+      <h2 id="suggestions-heading" class="section-title">Sugerencias de uso</h2>
+      <p class="section-subtitle">Roles propuestos para esta paleta y los pares con mejor contraste para combinar texto y fondo.</p>
+      <div id="roles-list" class="roles-list"></div>
+      <div id="pairs-list" class="pairs-list"></div>
+    </section>
+
+    <section class="saved" aria-labelledby="saved-heading">
+      <h2 id="saved-heading" class="saved__title">Paletas guardadas</h2>
+      <ul id="saved-list" class="saved__list">
+        <li class="saved__empty">Todavía no guardaste ninguna paleta.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__name">Colorfly<span class="brand__name-accent">Studio</span></span>
+      </div>
+      <p class="site-footer__tagline">
+        Paletas listas en segundos, para que el equipo arranque a diseñar antes.
+      </p>
+    </div>
+
+    <nav class="site-footer__links" aria-label="Enlaces del proyecto">
+      <a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub del proyecto</a>
+      <a href="#main">Volver al generador</a>
+      <a href="#controls-heading">Cómo funciona</a>
+    </nav>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 Colorfly Studio · Proyecto Integrador M1 — Full Stack</p>
+      <button type="button" id="back-to-top" class="back-to-top" aria-label="Volver arriba">
+        ↑ Arriba
+      </button>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
