@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎨 Paleta
+# 🎨 ColorflyStudio
 
 **Generador de paletas de color interactivo, construido con HTML, CSS y JavaScript puros.**
 
