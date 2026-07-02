@@ -3,201 +3,197 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paleta — Generador de Paletas Interactivo | Colorfly Studio</title>
-  <meta name="description" content="Generá paletas de colores aleatorias en HEX y HSL para tus propuestas de branding. Proyecto Integrador M1 - Full Stack." />
+  <title>Paleta - Generador de Paletas Interactivo</title>
+  <meta name="description" content="Generador de paletas de colores. Proyecto Integrador M1 - Full Stack." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
 
+  <!-- link para saltar al contenido, para accesibilidad -->
   <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
-  <header class="site-header">
-    <div class="brand">
-      <span class="brand__mark" aria-hidden="true"></span>
-      <span class="brand__name">Colorfly<span class="brand__name-accent">Studio</span></span>
+  <!-- HEADER con el logo y el boton de modo oscuro -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-bolita"></span>
+      <span class="logo-texto">Colorfly<span class="logo-acento">Studio</span></span>
     </div>
-    <div class="site-header__right">
-      <p class="site-header__tag">Fábrica de paletas — Nº 01</p>
-      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar a modo oscuro" aria-pressed="false">
-        <span class="theme-toggle__icon" aria-hidden="true">🌙</span>
+    <div class="header-derecha">
+      <p class="header-subtitulo">Generador de paletas de colores</p>
+      <button type="button" id="theme-toggle" class="btn-tema" aria-label="Cambiar a modo oscuro">
+        <span id="theme-icon">🌙</span>
       </button>
     </div>
   </header>
 
   <main id="main">
 
-    <section class="controls" aria-labelledby="controls-heading">
-      <p class="eyebrow">Generador</p>
-      <h1 id="controls-heading" class="controls__title">
+    <!-- SECCION 1: controles principales -->
+    <section class="seccion-controles" aria-labelledby="controls-heading">
+      <h1 id="controls-heading" class="titulo-principal">
         Una paleta nueva,<br>a un click de distancia.
       </h1>
-      <p class="controls__subtitle">
+      <p class="subtitulo">
         Elegí el tamaño, generá colores aleatorios y armá la base visual de tu próxima propuesta.
       </p>
 
-      <div class="toolbar">
-        <fieldset class="toolbar__group">
-          <legend class="toolbar__legend">Tamaño</legend>
-          <div class="pill-picker">
-            <label class="pill-picker__option">
+      <div class="caja-botones">
+        <div class="grupo">
+          <p class="grupo-titulo">Tamaño</p>
+          <div class="opciones">
+            <label class="opcion">
               <input type="radio" name="palette-size" value="6" checked />
               <span>6</span>
             </label>
-            <label class="pill-picker__option">
+            <label class="opcion">
               <input type="radio" name="palette-size" value="8" />
               <span>8</span>
             </label>
-            <label class="pill-picker__option">
+            <label class="opcion">
               <input type="radio" name="palette-size" value="9" />
               <span>9</span>
             </label>
           </div>
-        </fieldset>
+        </div>
 
-        <fieldset class="toolbar__group">
-          <legend class="toolbar__legend">Formato</legend>
-          <div class="pill-picker">
-            <label class="pill-picker__option">
+        <div class="grupo">
+          <p class="grupo-titulo">Formato</p>
+          <div class="opciones">
+            <label class="opcion">
               <input type="radio" name="color-format" value="hex" checked />
               <span>HEX</span>
             </label>
-            <label class="pill-picker__option">
+            <label class="opcion">
               <input type="radio" name="color-format" value="hsl" />
               <span>HSL</span>
             </label>
           </div>
-        </fieldset>
+        </div>
 
-        <button type="button" id="generate-btn" class="generate-btn">
-          <span class="generate-btn__icon" aria-hidden="true">✦</span>
+        <button type="button" id="generate-btn" class="btn-generar">
           Generar paleta
         </button>
       </div>
 
-      <div class="toolbar toolbar--secondary">
-        <button type="button" id="save-btn" class="ghost-btn" aria-describedby="save-hint">
+      <div class="caja-botones caja-botones-2">
+        <button type="button" id="save-btn" class="btn-secundario">
           Guardar esta paleta
         </button>
-        <button type="button" id="clear-saved-btn" class="ghost-btn ghost-btn--danger">
+        <button type="button" id="clear-saved-btn" class="btn-secundario btn-rojo">
           Borrar guardadas
         </button>
-        <span class="toolbar__divider" aria-hidden="true"></span>
-        <button type="button" id="download-png-btn" class="ghost-btn">
-          ⬇ Descargar PNG
+        <button type="button" id="download-png-btn" class="btn-secundario">
+          Descargar PNG
         </button>
-        <button type="button" id="print-btn" class="ghost-btn">
-          🖨 Imprimir / PDF
+        <button type="button" id="print-btn" class="btn-secundario">
+          Imprimir / PDF
         </button>
-        <button type="button" id="share-btn" class="ghost-btn">
-          🔗 Compartir link
+        <button type="button" id="share-btn" class="btn-secundario">
+          Compartir link
         </button>
-        <span id="save-hint" class="visually-hidden">Guarda la paleta actual en este navegador</span>
       </div>
     </section>
 
-    <section class="extract" aria-labelledby="extract-heading">
-      <p class="eyebrow eyebrow--inline">00 — Desde una imagen</p>
-      <div class="extract__row">
+    <!-- SECCION 2: subir una imagen para sacar los colores -->
+    <section class="seccion-extraer" aria-labelledby="extract-heading">
+      <div class="extraer-fila">
         <div>
-          <h2 id="extract-heading" class="section-title">¿Ya tenés una imagen de referencia?</h2>
-          <p class="section-subtitle">Subí una foto o un moodboard y extraemos los colores dominantes automáticamente.</p>
+          <h2 id="extract-heading" class="titulo-seccion">¿Ya tenés una imagen de referencia?</h2>
+          <p class="subtitulo-seccion">Subí una foto y sacamos los colores principales automáticamente.</p>
         </div>
-        <label class="extract__upload" for="image-input">
-          <span>📷 Elegir imagen</span>
-          <input type="file" id="image-input" accept="image/*" class="visually-hidden" />
+        <label class="btn-subir" for="image-input">
+          <span>Elegir imagen</span>
+          <input type="file" id="image-input" accept="image/*" class="input-oculto" />
         </label>
       </div>
-      <div id="extract-preview-row" class="extract__preview-row" hidden>
-        <img id="extract-preview-img" class="extract__preview-img" alt="Miniatura de la imagen subida" />
-        <p id="extract-preview-name" class="extract__preview-name"></p>
+      <div id="extract-preview-row" class="extraer-preview" hidden>
+        <img id="extract-preview-img" class="extraer-preview-img" alt="Imagen subida" />
+        <p id="extract-preview-name"></p>
       </div>
     </section>
 
-    <section class="palette" aria-label="Paleta de colores generada">
-      <p class="eyebrow eyebrow--inline">01 — Paleta</p>
-      <ul id="palette-list" class="palette__list" data-size="6">
-        <!-- Swatches inyectados por JS -->
+    <!-- SECCION 3: la paleta generada -->
+    <section class="seccion-paleta" aria-label="Paleta de colores">
+      <ul id="palette-list" class="lista-colores" data-size="6">
+        <!-- Los colores se agregan con JavaScript -->
       </ul>
 
-      <div class="history">
-        <p class="history__label">Historial reciente</p>
-        <div id="history-strip" class="history__strip"></div>
+      <div class="historial">
+        <p class="grupo-titulo">Historial reciente</p>
+        <div id="history-strip" class="historial-fila"></div>
       </div>
     </section>
 
-    <section class="gradient" aria-labelledby="gradient-heading">
-      <p class="eyebrow eyebrow--inline">02 — Gradiente</p>
-      <div class="gradient__header">
+    <!-- SECCION 4: gradiente -->
+    <section class="seccion-gradiente" aria-labelledby="gradient-heading">
+      <div class="gradiente-header">
         <div>
-          <h2 id="gradient-heading" class="section-title">Todo junto, en un degradé</h2>
-          <p class="section-subtitle">Combinación de toda la paleta, lista para usar como fondo.</p>
+          <h2 id="gradient-heading" class="titulo-seccion">Todo junto, en un degradé</h2>
+          <p class="subtitulo-seccion">Combinación de toda la paleta, lista para usar como fondo.</p>
         </div>
-        <fieldset class="toolbar__group">
-          <legend class="visually-hidden">Tipo de gradiente</legend>
-          <div class="pill-picker">
-            <label class="pill-picker__option">
+        <div class="grupo">
+          <div class="opciones">
+            <label class="opcion">
               <input type="radio" name="gradient-type" value="135deg" checked />
               <span>Diagonal</span>
             </label>
-            <label class="pill-picker__option">
+            <label class="opcion">
               <input type="radio" name="gradient-type" value="90deg" />
               <span>Horizontal</span>
             </label>
-            <label class="pill-picker__option">
+            <label class="opcion">
               <input type="radio" name="gradient-type" value="radial" />
               <span>Radial</span>
             </label>
           </div>
-        </fieldset>
+        </div>
       </div>
-      <div id="gradient-preview" class="gradient-preview" role="img" aria-label="Vista previa del gradiente generado a partir de la paleta"></div>
-      <button type="button" id="copy-gradient-btn" class="ghost-btn">Copiar CSS del gradiente</button>
+      <div id="gradient-preview" class="gradiente-vista"></div>
+      <button type="button" id="copy-gradient-btn" class="btn-secundario">Copiar CSS del gradiente</button>
     </section>
 
-    <section class="suggestions" aria-labelledby="suggestions-heading">
-      <p class="eyebrow eyebrow--inline">03 — Combinaciones</p>
-      <h2 id="suggestions-heading" class="section-title">Qué hacer con estos colores</h2>
-      <p class="section-subtitle">Roles propuestos para esta paleta y los pares con mejor contraste para combinar texto y fondo.</p>
-      <div id="roles-list" class="roles-list"></div>
-      <div id="pairs-list" class="pairs-list"></div>
+    <!-- SECCION 5: sugerencias de combinacion -->
+    <section class="seccion-sugerencias" aria-labelledby="suggestions-heading">
+      <h2 id="suggestions-heading" class="titulo-seccion">Qué hacer con estos colores</h2>
+      <p class="subtitulo-seccion">Colores sugeridos para fondo, texto y acento, y las mejores combinaciones de contraste.</p>
+      <div id="roles-list" class="lista-roles"></div>
+      <div id="pairs-list" class="lista-pares"></div>
     </section>
 
-    <section class="saved" aria-labelledby="saved-heading">
-      <p class="eyebrow eyebrow--inline">04 — Archivo</p>
-      <h2 id="saved-heading" class="section-title">Paletas guardadas</h2>
-      <ul id="saved-list" class="saved__list">
-        <li class="saved__empty">Todavía no guardaste ninguna paleta.</li>
+    <!-- SECCION 6: paletas guardadas -->
+    <section class="seccion-guardadas" aria-labelledby="saved-heading">
+      <h2 id="saved-heading" class="titulo-seccion">Paletas guardadas</h2>
+      <ul id="saved-list" class="lista-guardadas">
+        <li class="texto-vacio">Todavía no guardaste ninguna paleta.</li>
       </ul>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="site-footer__top">
-      <div class="site-footer__brand">
-        <span class="brand__mark" aria-hidden="true"></span>
-        <span class="brand__name">Colorfly<span class="brand__name-accent">Studio</span></span>
+  <footer class="footer">
+    <div class="footer-arriba">
+      <div class="logo">
+        <span class="logo-bolita"></span>
+        <span class="logo-texto">Colorfly<span class="logo-acento">Studio</span></span>
       </div>
-      <p class="site-footer__tagline">
+      <p class="footer-tagline">
         Paletas listas en segundos, para que el equipo arranque a diseñar antes.
       </p>
     </div>
 
-    <nav class="site-footer__links" aria-label="Enlaces del proyecto">
-      <a href="https://github.com/charbel-sfeir/M1_CHARBEL-SFEIR" target="_blank" rel="noopener noreferrer">GitHub del proyecto</a>
+    <nav class="footer-links">
+      <a href="https://github.com/charbel-sfeir/ProyectoM1_CHARBEL-SFEIR" target="_blank" rel="noopener noreferrer">GitHub del proyecto</a>
       <a href="#main">Volver al generador</a>
-      <a href="#controls-heading">Cómo funciona</a>
     </nav>
 
-    <div class="site-footer__bottom">
-      <p>© 2026 Colorfly Studio · Proyecto Integrador M1 — Full Stack</p>
-      <button type="button" id="back-to-top" class="back-to-top" aria-label="Volver arriba">
-        ↑ Arriba
+    <div class="footer-abajo">
+      <p>© 2026 Colorfly Studio - Proyecto Integrador M1</p>
+      <button type="button" id="back-to-top" class="btn-arriba">
+        Arriba ↑
       </button>
     </div>
   </footer>
